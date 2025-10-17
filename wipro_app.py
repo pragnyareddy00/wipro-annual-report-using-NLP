@@ -6,6 +6,13 @@ This Streamlit app performs NLP tasks on an uploaded company annual report PDF.
 Tasks include text extraction, preprocessing, sentiment analysis, word frequency analysis,
 word cloud generation, and topic modeling using LDA.
 """
+import nltk
+
+# Download stopwords only if not already downloaded
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
 
 # ==============================================================================
 # 0. Import Core Libraries & Setup
