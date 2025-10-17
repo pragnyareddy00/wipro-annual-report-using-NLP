@@ -1,7 +1,7 @@
 streamlit
 pandas
 numpy==1.26.4
-scipy==1.13.1
+scipy==1.11.4
 pdfplumber
 nltk
 textblob
