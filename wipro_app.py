@@ -1,3 +1,11 @@
+import nltk
+
+required_resources = ['stopwords', 'punkt', 'wordnet', 'omw-1.4']
+for res in required_resources:
+    try:
+        nltk.data.find(f'corpora/{res}')
+    except LookupError:
+        nltk.download(res, quiet=True)
 # -*- coding: utf-8 -*-
 """
 NLP Mini Project: Annual Report Analysis (Streamlit App)
