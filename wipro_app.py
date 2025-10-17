@@ -6,13 +6,46 @@ This Streamlit app performs NLP tasks on an uploaded company annual report PDF.
 Tasks include text extraction, preprocessing, sentiment analysis, word frequency analysis,
 word cloud generation, and topic modeling using LDA.
 """
+import streamlit as st
 import nltk
 
-# Download stopwords only if not already downloaded
-try:
-    nltk.data.find('corpora/stopwords')
-except LookupError:
-    nltk.download('stopwords')
+# -----------------------------
+# NLTK Setup Function
+# -----------------------------
+@st.cache_resource
+def setup_nltk_resources():
+    """
+    Ensure all required NLTK resources are available.
+    Downloads them if missing.
+    """
+    # List of required NLTK corpora and models
+    required_resources = ['stopwords', 'punkt', 'wordnet', 'omw-1.4']
+
+    for res in required_resources:
+        try:
+            # Check if resource is already downloaded
+            if res in ['punkt']:  # tokenizer models are in 'tokenizers'
+                nltk.data.find(f'tokenizers/{res}')
+            else:
+                nltk.data.find(f'corpora/{res}')
+        except LookupError:
+            st.sidebar.info(f"Downloading NLTK resource: {res} ...")
+            nltk.download(res, quiet=True)
+
+    st.sidebar.success("✅ All NLTK resources are ready!")
+    return True
+
+# -----------------------------
+# Initialize NLTK before main app
+# -----------------------------
+nltk_ready = setup_nltk_resources()
+
+# -----------------------------
+# Main App Example
+# -----------------------------
+if nltk_ready:
+    st.title("Wipro NLP Report Assistant")
+    st.write("NLTK resources are loaded. You can now run your NLP pipeline safely.")
 
 # ==============================================================================
 # 0. Import Core Libraries & Setup
