@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+pdfplumber
+nltk
+textblob
+wordcloud
+matplotlib
+scikit-learn
+gensim>=4.0.0
