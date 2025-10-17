@@ -1,10 +1,11 @@
 streamlit
 pandas
-numpy
+numpy==1.26.4
+scipy==1.13.1
 pdfplumber
 nltk
 textblob
 wordcloud
 matplotlib
-scikit-learn
-gensim>=4.0.0
+scikit-learn==1.5.0
+gensim==4.3.2
